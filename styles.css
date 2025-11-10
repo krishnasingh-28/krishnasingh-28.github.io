@@ -366,24 +366,46 @@ body {
 
 .stats {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
     margin-top: 2rem;
+    justify-content: flex-start;
 }
 
 .stat-item {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number-wrapper {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
 }
 
 .stat-number {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 700;
     color: var(--primary-color);
-    display: block;
+    display: inline-block;
+    line-height: 1;
+}
+
+.stat-plus {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-left: 2px;
 }
 
 .stat-label {
     color: var(--text-secondary);
     font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
 }
 
 #neural-canvas {
@@ -523,6 +545,7 @@ body {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
 .project-tech span {
@@ -535,17 +558,63 @@ body {
 
 .project-links {
     display: flex;
-    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
 }
 
 .project-link {
     color: var(--text-secondary);
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    padding: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 255, 136, 0.05);
+    position: relative;
 }
 
 .project-link:hover {
     color: var(--primary-color);
+    border-color: var(--primary-color);
+    background: rgba(0, 255, 136, 0.1);
+    transform: translateY(-3px) rotate(45deg);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+}
+
+.project-link i {
+    transition: transform 0.3s ease;
+}
+
+.project-link:hover i {
+    transform: rotate(-45deg);
+}
+
+/* Tooltip for the link */
+.project-link::before {
+    content: "View on GitHub";
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card-bg);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    border: 1px solid var(--primary-color);
+}
+
+.project-link:hover::before {
+    opacity: 1;
 }
 
 /* Experience Section */
@@ -613,6 +682,89 @@ body {
 
 .timeline-content p {
     color: var(--text-secondary);
+}
+
+/* Certifications Section */
+.certifications {
+    padding: 100px 0;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(0, 153, 255, 0.05) 100%);
+}
+
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.cert-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.cert-card:hover::before {
+    transform: translateX(0);
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+}
+
+.cert-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.cert-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.cert-card h4 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.cert-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.cert-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cert-link:hover {
+    transform: translateX(5px);
 }
 
 /* Contact Section */
@@ -752,174 +904,6 @@ body {
     
     .stats {
         flex-direction: column;
-    }
-}
-/* Add this to your existing styles.css file */
-
-/* Certifications Section */
-.certifications {
-    padding: 100px 0;
-    background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(0, 153, 255, 0.05) 100%);
-}
-
-.cert-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.cert-card {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    text-align: center;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.cert-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-}
-
-.cert-card:hover::before {
-    transform: translateX(0);
-}
-
-.cert-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary-color);
-    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
-}
-
-.cert-icon {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.cert-card h3 {
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-}
-
-.cert-card h4 {
-    color: var(--secondary-color);
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-}
-
-.cert-card p {
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-}
-
-.cert-link {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.cert-link:hover {
-    transform: translateX(5px);
-}
-
-/* LeetCode icon styling in social links */
-.social-link svg {
-    width: 20px;
-    height: 20px;
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    display: inline-block;
-    min-width: 40px;
-    text-align: center;
-}
-
-.stat-number.animated {
-    animation: pulseOnce 0.5s ease;
-}
-
-@keyframes pulseOnce {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Updating styles onto the styles.css file */
-
-.stats {
-    display: flex;
-    gap: 3rem;
-    margin-top: 2rem;
-    justify-content: flex-start;
-}
-
-.stat-item {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.stat-number-wrapper {
-    display: flex;
-    align-items: baseline;
-    margin-bottom: 0.5rem;
-}
-
-.stat-number {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    display: inline-block;
-    line-height: 1;
-}
-
-.stat-plus {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-left: 2px;
-}
-
-.stat-label {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 0.5rem;
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-    .stats {
-        flex-direction: column;
         align-items: center;
         gap: 2rem;
     }
@@ -935,66 +919,4 @@ body {
     .stat-plus {
         font-size: 1.8rem;
     }
-}
-
-/* Updating these styles onto the styles.css file */
-
-.project-links {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-.project-link {
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-    padding: 10px;
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 255, 136, 0.05);
-}
-
-.project-link:hover {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    background: rgba(0, 255, 136, 0.1);
-    transform: translateY(-3px) rotate(45deg);
-    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
-}
-
-.project-link i {
-    transition: transform 0.3s ease;
-}
-
-.project-link:hover i {
-    transform: rotate(-45deg);
-}
-
-/* Tooltip for the link */
-.project-link::before {
-    content: "View on GitHub";
-    position: absolute;
-    bottom: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--card-bg);
-    color: var(--primary-color);
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    border: 1px solid var(--primary-color);
-}
-
-.project-link:hover::before {
-    opacity: 1;
 }
