@@ -24,6 +24,12 @@ export function Hero({ ready }: { ready: boolean }) {
         {ready && <AiCore />}
       </div>
 
+      {/* rotating golden light sweep */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[140vh] -translate-x-1/2 -translate-y-1/2 gold-sweep opacity-70" />
+
+      {/* breathing golden aura */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[70vh] w-[70vh] -translate-x-1/2 -translate-y-1/2 gold-aura" />
+
       {/* radial vignette */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,var(--background)_78%)]" />
       <div className="pointer-events-none absolute inset-0 grain opacity-40" />

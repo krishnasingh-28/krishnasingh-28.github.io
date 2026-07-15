@@ -94,6 +94,77 @@
     color: transparent;
   }
 
+  /* Living, shimmering gold used for the hero name */
+  .text-gold-shimmer {
+    background: linear-gradient(
+      100deg,
+      oklch(0.7 0.11 80) 0%,
+      oklch(0.86 0.14 86) 22%,
+      oklch(0.98 0.06 95) 40%,
+      oklch(0.86 0.14 86) 58%,
+      oklch(0.7 0.11 80) 80%,
+      oklch(0.86 0.14 86) 100%
+    );
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gold-shimmer 5.5s linear infinite;
+    filter: drop-shadow(0 2px 30px oklch(0.82 0.13 84 / 35%));
+  }
+
+  @keyframes gold-shimmer {
+    0% {
+      background-position: 200% 50%;
+    }
+    100% {
+      background-position: -50% 50%;
+    }
+  }
+
+  /* Breathing golden aura behind the hero content */
+  .gold-aura {
+    background: radial-gradient(
+      circle at center,
+      oklch(0.82 0.14 84 / 22%) 0%,
+      oklch(0.7 0.1 80 / 8%) 35%,
+      transparent 70%
+    );
+    animation: aura-pulse 6s ease-in-out infinite;
+  }
+
+  @keyframes aura-pulse {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.12);
+    }
+  }
+
+  /* Slowly rotating conic sweep of golden light */
+  .gold-sweep {
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      oklch(0.82 0.14 84 / 14%) 40deg,
+      transparent 120deg,
+      transparent 240deg,
+      oklch(0.9 0.1 88 / 10%) 300deg,
+      transparent 360deg
+    );
+    animation: gold-rotate 22s linear infinite;
+  }
+
+  @keyframes gold-rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   .glass {
     background: color-mix(in oklch, var(--card) 55%, transparent);
     backdrop-filter: blur(16px);
