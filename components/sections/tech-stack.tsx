@@ -33,11 +33,11 @@ function TechSphere({
 }) {
   const points = useSpherePoints(items.length)
   const [rot, setRot] = useState({ x: 0.2, y: 0 })
+  const [mounted, setMounted] = useState(false)
   const rotRef = useRef(rot)
   rotRef.current = rot
   const speed = useRef({ x: 0.0009, y: 0.0016 })
   const containerRef = useRef<HTMLDivElement>(null)
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -68,7 +68,7 @@ function TechSphere({
       }}
     >
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/10 blur-3xl" />
-      {items.map((item, i) => {
+      {mounted && items.map((item, i) => {
         const p = points[i]
         const cosX = Math.cos(rot.x)
         const sinX = Math.sin(rot.x)
