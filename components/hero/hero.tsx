@@ -1,13 +1,9 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { ArrowRight, FileText, Mail } from 'lucide-react'
+import { AiCore } from './ai-core'
 import { profile } from '@/lib/portfolio-data'
-
-const AiCore = dynamic(() => import('./ai-core').then((m) => m.AiCore), {
-  ssr: false,
-})
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -19,9 +15,9 @@ export function Hero({ ready }: { ready: boolean }) {
       id="hero"
       className="relative flex min-h-screen items-center justify-center overflow-hidden"
     >
-      {/* 3D core */}
+      {/* Golden AI core */}
       <div className="pointer-events-none absolute inset-0 opacity-90">
-        {ready && <AiCore />}
+        <AiCore />
       </div>
 
       {/* rotating golden light sweep */}

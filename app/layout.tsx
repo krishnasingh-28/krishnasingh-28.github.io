@@ -16,6 +16,11 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
   title: 'Krishna Singh — AI Systems Engineer',
   description:
     'Portfolio of Krishna Singh, an AI Systems Engineer specializing in production AI systems, LLM engineering, retrieval-augmented generation, and intelligent backend architecture.',
