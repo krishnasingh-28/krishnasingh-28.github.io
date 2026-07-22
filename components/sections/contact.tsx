@@ -8,9 +8,9 @@ import { profile } from '@/lib/portfolio-data'
 
 const channels = [
   { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, Icon: Mail },
-  { label: 'LinkedIn', value: 'in/krishnasingh', href: profile.linkedin, Icon: LinkedinIcon },
-  { label: 'GitHub', value: '@krishnasingh', href: profile.github, Icon: GithubIcon },
-  { label: 'Resume', value: 'Download PDF', href: profile.resume, Icon: FileText },
+  { label: 'LinkedIn', value: 'in/krishna-singh28', href: profile.linkedin, Icon: LinkedinIcon },
+  { label: 'GitHub', value: '@krishnasingh-28', href: profile.github, Icon: GithubIcon },
+  { label: 'Resume', value: 'View Resume', href: profile.resume, Icon: FileText },
 ]
 
 export function Contact() {

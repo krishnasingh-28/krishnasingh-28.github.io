@@ -2,10 +2,11 @@ export const profile = {
   name: 'Krishna Singh',
   role: 'AI Systems Engineer',
   tagline: 'Production AI • LLM Engineering • Intelligent Systems',
-  email: 'krishna.singh@example.com',
-  github: 'https://github.com/krishnasingh',
-  linkedin: 'https://linkedin.com/in/krishnasingh',
-  resume: '/resume.pdf',
+  email: 'krishnasingh8404@gmail.com',
+  github: 'https://github.com/krishnasingh-28',
+  linkedin: 'https://www.linkedin.com/in/krishna-singh28/',
+  resume:
+    'https://docs.google.com/document/d/1zDkpSrlJ_N6dfxhkoV2HJmSFWVE3EJf8/edit?usp=sharing&ouid=113006508801822166430&rtpof=true&sd=true',
   summary:
     'I architect and ship production-grade AI systems — from retrieval pipelines and reasoning engines to autonomous agents and streaming backends. I care about the boring parts that make AI reliable: latency budgets, evaluation, observability, and clean system design.',
 }
@@ -19,12 +20,12 @@ export const loaderModules = [
 ]
 
 export const stats = [
-  { value: 4, suffix: '+', label: 'Years of Experience' },
-  { value: 12, suffix: '+', label: 'Production AI Systems' },
-  { value: 30, suffix: '+', label: 'Projects Built' },
-  { value: 8, suffix: '', label: 'AI Domains' },
-  { value: 5, suffix: '+', label: 'Countries Served' },
-  { value: 20, suffix: '+', label: 'Architectures Designed' },
+  { value: 1.5, suffix: '+', label: 'Years of Experience' },
+  { value: 6, suffix: '+', label: 'Production AI Systems' },
+  { value: 6, suffix: '+', label: 'Projects Built' },
+  { value: 3, suffix: '', label: 'AI Domains' },
+  { value: 3, suffix: '+', label: 'Clients Served' },
+  { value: 2, suffix: '', label: 'Architectures Designed' },
 ]
 
 export const experiences = [
@@ -89,8 +90,10 @@ export const skillGraph = {
     { id: 'vectordb', label: 'Vector DB', group: 'backend', x: 88, y: 60 },
     { id: 'mongodb', label: 'MongoDB', group: 'backend', x: 90, y: 44 },
     { id: 'cv', label: 'Computer Vision', group: 'ai', x: 18, y: 82 },
-    { id: 'deploy', label: 'Deployment', group: 'ops', x: 56, y: 88 },
-    { id: 'docker', label: 'Docker', group: 'ops', x: 80, y: 84 },
+    { id: 'mcp', label: 'MCP', group: 'ai', x: 64, y: 76 },
+    { id: 'postman', label: 'Postman', group: 'ops', x: 10, y: 34 },
+    { id: 'deploy', label: 'Deployment', group: 'ops', x: 50, y: 90 },
+    { id: 'docker', label: 'Docker', group: 'ops', x: 80, y: 86 },
   ],
   edges: [
     ['python', 'fastapi'],
@@ -113,12 +116,17 @@ export const skillGraph = {
     ['fastapi', 'deploy'],
     ['deploy', 'docker'],
     ['langchain', 'agents'],
+    ['agents', 'mcp'],
+    ['langgraph', 'mcp'],
+    ['fastapi', 'postman'],
+    ['postman', 'langsmith'],
   ] as [string, string][],
 }
 
 export const projects = [
   {
     title: 'Gemini RAG Engine',
+    repo: 'https://github.com/krishnasingh-28/Gemini-RAG-Engine',
     tag: 'Retrieval-Augmented Generation',
     blurb:
       'A grounded question-answering engine with source-cited responses, hybrid retrieval, and streaming generation.',
@@ -143,6 +151,7 @@ export const projects = [
   },
   {
     title: 'AI Conversational Chatbot',
+    repo: 'https://github.com/krishnasingh-28/chatbot',
     tag: 'Agents & Streaming',
     blurb:
       'A multi-turn conversational agent with intent routing, tool use, and real-time voice via streaming backend.',
@@ -167,6 +176,7 @@ export const projects = [
   },
   {
     title: 'Face Recognition System',
+    repo: 'https://github.com/krishnasingh-28/Face-Recognition-App',
     tag: 'Computer Vision',
     blurb:
       'A real-time face detection and recognition pipeline with embedding-based matching and an inference API.',
@@ -220,39 +230,43 @@ export const architectures = [
 
 export const techStack = {
   Languages: ['Python', 'TypeScript', 'SQL', 'Bash'],
-  Backend: ['FastAPI', 'Node.js', 'WebSockets', 'REST', 'gRPC'],
-  AI: ['LLMs', 'RAG', 'LangChain', 'Embeddings', 'Computer Vision', 'AI Agents'],
+  Backend: ['FastAPI', 'WebSockets', 'REST', 'Postman'],
+  AI: ['LLMs', 'RAG', 'LangChain', 'LangGraph', 'MCP', 'Embeddings', 'Computer Vision', 'AI Agents'],
   Frameworks: ['PyTorch', 'OpenCV', 'Pandas', 'NumPy'],
-  Databases: ['PostgreSQL', 'Redis', 'Vector DB', 'MongoDB'],
-  Cloud: ['AWS', 'GCP', 'Vercel'],
-  Deployment: ['Docker', 'CI/CD', 'Nginx', 'Serverless'],
+  Databases: ['PostgreSQL', 'Vector DB', 'MongoDB'],
+  Cloud: ['Vercel', 'Serverless'],
+  Observability: ['LangSmith'],
 }
 
 export const certifications = [
   {
-    title: 'Deep Learning Specialization',
-    issuer: 'DeepLearning.AI',
-    year: '2023',
+    title: 'Claude 101',
+    issuer: 'Anthropic',
+    year: 'June 2026',
+    link: 'https://drive.google.com/file/d/1VnzGhbq_ELhoaGs5FsiejyIFDHXrOn-j/view?usp=sharing',
   },
   {
-    title: 'Machine Learning Engineering',
-    issuer: 'Google Cloud',
-    year: '2022',
+    title: 'CS50P',
+    issuer: 'Harvard University',
+    year: 'March 2025 — April 2025',
+    link: 'https://drive.google.com/file/d/1WzdNDV1WEAinSp8J9hFrWY5nr-VLZJTc/view?usp=drive_link',
   },
   {
-    title: 'LangChain for LLM Applications',
-    issuer: 'DeepLearning.AI',
-    year: '2023',
+    title: 'Python for Data Science',
+    issuer: 'IIT Madras',
+    year: 'January 2024 — February 2024',
+    link: 'https://drive.google.com/file/d/15KsMj0_pNBFcA6IIX5LMtjrsm4qrEJf9/view?usp=sharing',
   },
   {
-    title: 'AWS Certified Solutions Architect',
-    issuer: 'Amazon Web Services',
-    year: '2022',
+    title: 'Data Science and Machine Learning',
+    issuer: 'Edureka',
+    year: 'March 2023 — May 2023',
+    link: 'https://drive.google.com/file/d/1G3_Hd0QjwVs4vb4IMEGUVgomA6rJGsuS/view?usp=sharing',
   },
 ]
 
 export const githubStats = {
-  username: 'krishnasingh',
+  username: 'krishnasingh-28',
   totalContributions: 1284,
   followers: 340,
   stars: 512,

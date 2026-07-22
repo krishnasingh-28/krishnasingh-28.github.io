@@ -47,15 +47,27 @@ export function Hero({ ready }: { ready: boolean }) {
           </span>
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={ready ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-balance text-5xl font-bold tracking-tight text-foreground sm:text-7xl md:text-8xl"
-        >
-          {profile.name.split(' ')[0]}{' '}
-          <span className="text-gradient-gold">{profile.name.split(' ')[1]}</span>
-        </motion.h1>
+        <h1 className="text-balance text-5xl font-bold tracking-tight sm:text-7xl md:text-8xl">
+          <span className="sr-only">{profile.name}</span>
+          <span aria-hidden="true" className="text-gold-shimmer inline-block">
+            {profile.name.split('').map((ch, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 26, rotateX: 60, filter: 'blur(8px)' }}
+                animate={ready ? { opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' } : {}}
+                transition={{
+                  delay: 0.3 + i * 0.045,
+                  duration: 0.7,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="inline-block"
+                style={{ whiteSpace: ch === ' ' ? 'pre' : undefined }}
+              >
+                {ch}
+              </motion.span>
+            ))}
+          </span>
+        </h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -90,6 +102,8 @@ export function Hero({ ready }: { ready: boolean }) {
           </button>
           <a
             href={profile.resume}
+            target="_blank"
+            rel="noreferrer"
             className="flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-gold/60 hover:text-gold"
           >
             <FileText size={16} />

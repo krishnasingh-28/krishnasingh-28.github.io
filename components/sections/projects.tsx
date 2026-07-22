@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, X } from 'lucide-react'
 import { SectionHeading } from '@/components/section-heading'
 import { FlowDiagram } from '@/components/flow-diagram'
+import { GithubIcon } from '@/components/brand-icons'
 import { projects } from '@/lib/portfolio-data'
 
 const flowMap: Record<string, string[]> = {
@@ -25,12 +26,20 @@ function TiltCard({
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
 
   return (
-    <motion.button
+    <motion.div
+      role="button"
+      tabIndex={0}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ delay: index * 0.08, duration: 0.6 }}
       onClick={onOpen}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onOpen()
+        }
+      }}
       onMouseMove={(e) => {
         const r = e.currentTarget.getBoundingClientRect()
         const px = (e.clientX - r.left) / r.width - 0.5
@@ -38,7 +47,7 @@ function TiltCard({
         setTilt({ x: py * -6, y: px * 8 })
       }}
       onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-      className="glass group relative flex h-full flex-col overflow-hidden rounded-3xl p-6 text-left transition-shadow hover:gold-glow"
+      className="glass group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl p-6 text-left transition-shadow hover:gold-glow"
       style={{
         transform: `perspective(900px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
         transformStyle: 'preserve-3d',
@@ -56,11 +65,24 @@ function TiltCard({
         <FlowDiagram stages={flowMap[project.flow]} compact />
       </div>
 
-      <span className="mt-6 flex items-center gap-1.5 font-mono text-xs text-foreground/70 transition-colors group-hover:text-gold">
-        Open case study
-        <ArrowUpRight size={14} />
-      </span>
-    </motion.button>
+      <div className="mt-6 flex items-center justify-between">
+        <span className="flex items-center gap-1.5 font-mono text-xs text-foreground/70 transition-colors group-hover:text-gold">
+          Open case study
+          <ArrowUpRight size={14} />
+        </span>
+        <a
+          href={project.repo}
+          target="_blank"
+          rel="noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 font-mono text-[11px] text-foreground/70 transition-colors hover:border-gold/60 hover:text-gold"
+          aria-label={`View ${project.title} repository on GitHub`}
+        >
+          <GithubIcon size={13} />
+          Repo
+        </a>
+      </div>
+    </motion.div>
   )
 }
 
@@ -107,6 +129,16 @@ export function Projects() {
                 {project.tag}
               </span>
               <h3 className="mt-2 text-3xl font-bold text-foreground">{project.title}</h3>
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/5 px-4 py-2 font-mono text-xs text-gold transition-colors hover:bg-gold/15"
+              >
+                <GithubIcon size={14} />
+                View Repository
+                <ArrowUpRight size={13} />
+              </a>
 
               <div className="mt-8 space-y-7">
                 <Block label="Challenge" body={project.challenge} />

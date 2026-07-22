@@ -12,13 +12,16 @@ export function Certifications() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         {certifications.map((cert, i) => (
-          <motion.div
+          <motion.a
             key={cert.title}
+            href={cert.link}
+            target="_blank"
+            rel="noreferrer"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ delay: i * 0.07, duration: 0.55 }}
-            className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 p-6 transition-colors hover:border-gold/50"
+            className="group relative block overflow-hidden rounded-2xl border border-border bg-card/50 p-6 transition-colors hover:border-gold/50"
           >
             <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-gold/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
 
@@ -32,9 +35,9 @@ export function Certifications() {
                   <p className="mt-1 text-sm text-muted-foreground">{cert.issuer}</p>
                 </div>
               </div>
-              <span className="font-mono text-xs text-gold">{cert.year}</span>
+              <span className="whitespace-nowrap font-mono text-xs text-gold">{cert.year}</span>
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
     </section>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { SectionHeading } from '@/components/section-heading'
 import { techStack } from '@/lib/portfolio-data'
 
@@ -141,20 +141,29 @@ export function TechStack() {
             ))}
           </div>
 
-          <motion.div
-            key={activeGroup ?? 'all'}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-8 min-h-[120px]"
-          >
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-gold">
+          <div className="mt-8 min-h-[160px]">
+            <motion.p
+              key={hovered ?? activeGroup ?? 'all'}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25 }}
+              className="font-mono text-xs uppercase tracking-[0.25em] text-gold"
+            >
               {hovered ?? activeGroup ?? 'All Technologies'}
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {(activeGroup ? techStack[activeGroup as keyof typeof techStack] : items.map((i) => i.label)).map(
-                (t) => (
-                  <span
+            </motion.p>
+            <motion.div layout className="mt-4 flex flex-wrap gap-2">
+              <AnimatePresence mode="popLayout" initial={false}>
+                {(activeGroup
+                  ? (techStack[activeGroup as keyof typeof techStack] as readonly string[])
+                  : items.map((i) => i.label)
+                ).map((t) => (
+                  <motion.span
                     key={t}
+                    layout
+                    initial={{ opacity: 0, scale: 0.8, y: 6 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, y: -6 }}
+                    transition={{ type: 'spring', stiffness: 420, damping: 32 }}
                     className={`rounded-lg border px-3 py-1.5 text-sm transition-colors ${
                       hovered === t
                         ? 'border-gold/60 bg-gold/10 text-gold'
@@ -162,11 +171,11 @@ export function TechStack() {
                     }`}
                   >
                     {t}
-                  </span>
-                ),
-              )}
-            </div>
-          </motion.div>
+                  </motion.span>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          </div>
         </div>
 
         <div className="order-1 lg:order-2">
