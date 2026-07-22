@@ -108,7 +108,6 @@ export function TechStack() {
   const groups = Object.keys(techStack)
   const [activeGroup, setActiveGroup] = useState<string | null>(null)
   const [hovered, setHovered] = useState<string | null>(null)
-  const [isTransitioning, setIsTransitioning] = useState(false)
 
   const items: Item[] = useMemo(
     () =>
@@ -117,12 +116,6 @@ export function TechStack() {
       ),
     [],
   )
-
-  const handleGroupClick = (g: string) => {
-    setIsTransitioning(true)
-    setActiveGroup(activeGroup === g ? null : g)
-    setTimeout(() => setIsTransitioning(false), 350)
-  }
 
   return (
     <section id="stack" className="relative mx-auto max-w-6xl px-6 py-28 md:py-36">
@@ -134,14 +127,11 @@ export function TechStack() {
             {groups.map((g) => (
               <button
                 key={g}
-                onMouseEnter={() => !isTransitioning && setActiveGroup(g)}
-                onMouseLeave={() => !isTransitioning && setActiveGroup(null)}
-                onClick={() => handleGroupClick(g)}
-                disabled={isTransitioning}
-                className={`rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all ${
+                onClick={() => setActiveGroup(activeGroup === g ? null : g)}
+                className={`rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${
                   activeGroup === g
                     ? 'border-gold/60 bg-gold/10 text-gold'
-                    : 'border-border text-muted-foreground hover:text-foreground disabled:opacity-60'
+                    : 'border-border text-muted-foreground hover:border-gold/40 hover:text-foreground'
                 }`}
               >
                 {g}
@@ -159,19 +149,24 @@ export function TechStack() {
             >
               {hovered ?? activeGroup ?? 'All Technologies'}
             </motion.p>
-            <motion.div layout className="mt-4 flex flex-wrap gap-2">
-              <AnimatePresence mode="wait" initial={false}>
+            <AnimatePresence mode="popLayout" initial={false}>
+              <motion.div
+                key={activeGroup ?? 'all'}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.22, ease: 'easeOut' }}
+                className="mt-4 flex flex-wrap gap-2"
+              >
                 {(activeGroup
                   ? (techStack[activeGroup as keyof typeof techStack] as readonly string[])
                   : items.map((i) => i.label)
-                ).map((t) => (
+                ).map((t, i) => (
                   <motion.span
                     key={t}
-                    layout="position"
-                    initial={{ opacity: 0, scale: 0.75 }}
+                    initial={{ opacity: 0, scale: 0.85 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.75 }}
-                    transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                    transition={{ delay: i * 0.018, duration: 0.25, ease: 'easeOut' }}
                     className={`rounded-lg border px-3 py-1.5 text-sm transition-colors ${
                       hovered === t
                         ? 'border-gold/60 bg-gold/10 text-gold'
@@ -181,8 +176,8 @@ export function TechStack() {
                     {t}
                   </motion.span>
                 ))}
-              </AnimatePresence>
-            </motion.div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
 
