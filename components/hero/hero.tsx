@@ -45,22 +45,30 @@ export function Hero({ ready }: { ready: boolean }) {
 
         <h1 className="text-balance text-5xl font-bold tracking-tight sm:text-7xl md:text-8xl">
           <span className="sr-only">{profile.name}</span>
-          <span aria-hidden="true" className="text-gold-shimmer inline-block">
-            {profile.name.split('').map((ch, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 26, rotateX: 60, filter: 'blur(8px)' }}
-                animate={ready ? { opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' } : {}}
-                transition={{
-                  delay: 0.3 + i * 0.045,
-                  duration: 0.7,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="inline-block"
-                style={{ whiteSpace: ch === ' ' ? 'pre' : undefined }}
-              >
-                {ch}
-              </motion.span>
+          <span aria-hidden="true">
+            {profile.name.split(' ').map((word, wi, words) => (
+              <span key={wi} className="inline-block whitespace-nowrap">
+                {word.split('').map((ch, ci) => {
+                  const letterIndex =
+                    words.slice(0, wi).reduce((n, w) => n + w.length + 1, 0) + ci
+                  return (
+                    <motion.span
+                      key={ci}
+                      initial={{ opacity: 0, y: 26 }}
+                      animate={ready ? { opacity: 1, y: 0 } : {}}
+                      transition={{
+                        delay: 0.3 + letterIndex * 0.045,
+                        duration: 0.7,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                      className="text-gold-shimmer inline-block"
+                    >
+                      {ch}
+                    </motion.span>
+                  )
+                })}
+                {wi < words.length - 1 && <span>{'\u00A0'}</span>}
+              </span>
             ))}
           </span>
         </h1>
