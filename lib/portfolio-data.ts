@@ -5,8 +5,7 @@ export const profile = {
   email: 'krishnasingh8404@gmail.com',
   github: 'https://github.com/krishnasingh-28',
   linkedin: 'https://www.linkedin.com/in/krishna-singh28/',
-  resume:
-    'https://docs.google.com/document/d/1zDkpSrlJ_N6dfxhkoV2HJmSFWVE3EJf8/edit?usp=sharing&ouid=113006508801822166430&rtpof=true&sd=true',
+  resume: 'https://drive.google.com/file/d/1cIbIkHgYZYRNJ1nV8sgQ9p9xSkQYA6ry/view?usp=sharing',
   summary:
     'I architect and ship production-grade AI systems — from retrieval pipelines and reasoning engines to autonomous agents and streaming backends. I care about the boring parts that make AI reliable: latency budgets, evaluation, observability, and clean system design.',
 }
@@ -31,8 +30,8 @@ export const stats = [
 export const experiences = [
   {
     company: 'FundsApp Wealth Technologies',
-    role: 'AI/ML Engineer',
-    period: '2023 — Present',
+    role: 'Associate AI/ML Engineer',
+    period: 'February 2026 — July 2026',
     context: 'Financial AI Platform',
     summary:
       'Built the AI backbone of a wealth-tech platform — LLM-ready services, real-time data pipelines, and intelligent financial workflows serving live portfolios.',
@@ -45,9 +44,9 @@ export const experiences = [
     diagram: 'financial',
   },
   {
-    company: 'doodleblue',
-    role: 'AI Engineer',
-    period: '2022 — 2023',
+    company: 'doodleblue Innovations',
+    role: 'Trainee AI Engineer',
+    period: 'July 2025 — January 2026',
     context: 'Conversational & CRM AI',
     summary:
       'Delivered conversational AI and retrieval systems: intent classification, CRM automation, Gemini-powered RAG, and AI voice calling on a streaming backend.',
@@ -60,9 +59,9 @@ export const experiences = [
     diagram: 'rag',
   },
   {
-    company: 'DB4Cloud',
-    role: 'Data Engineer',
-    period: '2021 — 2022',
+    company: 'DB4 Cloud Technology Private Ltd',
+    role: 'Data Analyst Intern',
+    period: 'April 2025 — June 2025',
     context: 'Analytics & Business Intelligence',
     summary:
       'Turned raw operational data into decisions through analytics pipelines, visualization layers, and business intelligence tooling.',
@@ -246,6 +245,12 @@ export const certifications = [
     link: 'https://drive.google.com/file/d/1VnzGhbq_ELhoaGs5FsiejyIFDHXrOn-j/view?usp=sharing',
   },
   {
+    title: 'Ultimate RAG Bootcamp',
+    issuer: 'Pathway AI',
+    year: 'May 2026',
+    link: 'https://drive.google.com/file/d/1BDkc5GnEypCKA4pnI_hHTVe8GMHjmBeJ/view?usp=drive_link',
+  },
+  {
     title: 'CS50P',
     issuer: 'Harvard University',
     year: 'March 2025 — April 2025',
@@ -256,12 +261,6 @@ export const certifications = [
     issuer: 'IIT Madras',
     year: 'January 2024 — February 2024',
     link: 'https://drive.google.com/file/d/15KsMj0_pNBFcA6IIX5LMtjrsm4qrEJf9/view?usp=sharing',
-  },
-  {
-    title: 'Data Science and Machine Learning',
-    issuer: 'Edureka',
-    year: 'March 2023 — May 2023',
-    link: 'https://drive.google.com/file/d/1G3_Hd0QjwVs4vb4IMEGUVgomA6rJGsuS/view?usp=sharing',
   },
 ]
 

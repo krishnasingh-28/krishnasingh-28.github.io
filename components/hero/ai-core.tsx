@@ -38,9 +38,7 @@ function OrbitRing({
       animate={{ rotate: 360 }}
       transition={{
         duration: Math.abs(speed),
-        ease: 'linear',
         repeat: Infinity,
-        direction: speed < 0 ? 'reverse' : 'normal',
       }}
     />
   )
