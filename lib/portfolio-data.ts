@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Krishna Singh',
   role: 'AI Systems Engineer',
-  tagline: 'Production AI • LLM Engineering • Intelligent Systems • Visual Computing',
+  tagline: 'Production AI • LLM Engineering • Intelligent Systems • Visual Computing • Automating Workflows',
   email: 'krishnasingh8404@gmail.com',
   github: 'https://github.com/krishnasingh-28',
   linkedin: 'https://www.linkedin.com/in/krishna-singh28/',
