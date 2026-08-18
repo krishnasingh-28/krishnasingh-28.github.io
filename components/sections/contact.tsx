@@ -15,7 +15,7 @@ const channels = [
 
 export function Contact() {
   return (
-    <section id="contact" className="relative mx-auto max-w-5xl px-6 py-28 md:py-40">
+    <section id="contact" className="relative mx-auto max-w-5xl scroll-mt-24 px-6 py-28 md:py-40">
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-64 w-64 -translate-x-1/2 rounded-full bg-gold/10 blur-[120px]" />
 
       <SectionHeading index="09" subtitle="Mission Control" title="Let's build the next generation of AI systems." />

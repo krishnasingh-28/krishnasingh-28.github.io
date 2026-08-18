@@ -41,7 +41,7 @@ export function Nav() {
     >
       <nav
         className={`mx-auto flex max-w-6xl items-center justify-between rounded-full px-5 py-2.5 transition-all duration-500 ${
-          scrolled ? 'glass gold-glow' : ''
+          scrolled ? 'nav-glass gold-glow' : ''
         }`}
         style={{ width: 'calc(100% - 2rem)' }}
       >
@@ -86,7 +86,7 @@ export function Nav() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="glass mx-4 mt-2 grid grid-cols-2 gap-1 rounded-2xl p-3 md:hidden"
+            className="nav-glass mx-4 mt-2 grid grid-cols-2 gap-1 rounded-2xl p-3 md:hidden"
           >
             {links.map((l) => (
               <li key={l.id}>

@@ -118,7 +118,7 @@ export function TechStack() {
   )
 
   return (
-    <section id="stack" className="relative mx-auto max-w-6xl px-6 py-28 md:py-36">
+    <section id="stack" className="relative mx-auto max-w-6xl scroll-mt-24 px-6 py-28 md:py-36">
       <SectionHeading index="06" subtitle="Toolbox" title="The full technology stack." />
 
       <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]">

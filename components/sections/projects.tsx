@@ -91,7 +91,7 @@ export function Projects() {
   const project = active !== null ? projects[active] : null
 
   return (
-    <section id="projects" className="relative mx-auto max-w-6xl px-6 py-28 md:py-36">
+    <section id="projects" className="relative mx-auto max-w-6xl scroll-mt-24 px-6 py-28 md:py-36">
       <SectionHeading index="04" subtitle="Case Studies" title="Systems built to ship." />
 
       <div className="grid gap-6 md:grid-cols-3">

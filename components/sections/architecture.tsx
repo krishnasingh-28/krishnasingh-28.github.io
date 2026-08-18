@@ -7,7 +7,7 @@ import { architectures } from '@/lib/portfolio-data'
 
 export function Architecture() {
   return (
-    <section id="architecture" className="relative mx-auto max-w-6xl px-6 py-28 md:py-36">
+    <section id="architecture" className="relative mx-auto max-w-6xl scroll-mt-24 px-6 py-28 md:py-36">
       <SectionHeading
         index="05"
         subtitle="Systems Showcase"

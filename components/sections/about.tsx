@@ -7,7 +7,7 @@ import { profile, stats } from '@/lib/portfolio-data'
 
 export function About() {
   return (
-    <section id="about" className="relative mx-auto max-w-6xl px-6 py-28 md:py-36">
+    <section id="about" className="relative mx-auto max-w-6xl scroll-mt-24 px-6 py-28 md:py-36">
       <SectionHeading index="01" subtitle="The Engineer" title="Systems thinking, shipped to production." />
 
       <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">

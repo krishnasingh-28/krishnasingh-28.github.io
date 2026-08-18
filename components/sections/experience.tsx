@@ -17,7 +17,7 @@ export function Experience() {
   const [open, setOpen] = useState(0)
 
   return (
-    <section id="experience" className="relative mx-auto max-w-5xl px-6 py-28 md:py-36">
+    <section id="experience" className="relative mx-auto max-w-5xl scroll-mt-24 px-6 py-28 md:py-36">
       <SectionHeading index="02" subtitle="Trajectory" title="An engineering timeline." />
 
       <div className="relative">

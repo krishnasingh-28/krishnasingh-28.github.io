@@ -28,7 +28,7 @@ export function Skills() {
     !hovered || (connected.has(a) && connected.has(b) && (a === hovered || b === hovered))
 
   return (
-    <section id="skills" className="relative mx-auto max-w-6xl px-6 py-28 md:py-36">
+    <section id="skills" className="relative mx-auto max-w-6xl scroll-mt-24 px-6 py-28 md:py-36">
       <SectionHeading
         index="03"
         subtitle="Capability Graph"
