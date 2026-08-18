@@ -91,8 +91,10 @@ export const skillGraph = {
     { id: 'cv', label: 'Computer Vision', group: 'ai', x: 18, y: 82 },
     { id: 'mcp', label: 'MCP', group: 'ai', x: 64, y: 76 },
     { id: 'postman', label: 'Postman', group: 'ops', x: 10, y: 34 },
+    { id: 'aws', label: 'AWS', group: 'ops', x: 24, y: 92 },
+    { id: 'gcp', label: 'GCP', group: 'ops', x: 76, y: 92 },
     { id: 'deploy', label: 'Deployment', group: 'ops', x: 50, y: 90 },
-    { id: 'docker', label: 'Docker', group: 'ops', x: 80, y: 86 },
+    { id: 'docker', label: 'Docker', group: 'ops', x: 88, y: 82 },
   ],
   edges: [
     ['python', 'fastapi'],
@@ -119,6 +121,8 @@ export const skillGraph = {
     ['langgraph', 'mcp'],
     ['fastapi', 'postman'],
     ['postman', 'langsmith'],
+    ['deploy', 'aws'],
+    ['deploy', 'gcp'],
   ] as [string, string][],
 }
 
@@ -233,7 +237,7 @@ export const techStack = {
   AI: ['LLMs', 'RAG', 'LangChain', 'LangGraph', 'MCP', 'Embeddings', 'Computer Vision', 'AI Agents'],
   Frameworks: ['PyTorch', 'OpenCV', 'Pandas', 'NumPy'],
   Databases: ['PostgreSQL', 'Vector DB', 'MongoDB'],
-  Cloud: ['Vercel', 'Serverless'],
+  Cloud: ['AWS', 'GCP', 'Vercel', 'Serverless'],
   Observability: ['LangSmith'],
 }
 
