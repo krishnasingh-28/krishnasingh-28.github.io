@@ -2,7 +2,11 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, FileText, Mail } from 'lucide-react'
-import { AiCore } from './ai-core'
+import { AmbientGlow } from './ambient-glow'
+import { OrbitalLayer } from './orbital-layer'
+import { NeuralNetworkLayer } from './neural-network-layer'
+import { ParticleField } from './particle-field'
+import { AnimatedDataField } from './animated-data-field'
 import { profile } from '@/lib/portfolio-data'
 
 function scrollTo(id: string) {
@@ -15,20 +19,16 @@ export function Hero({ ready }: { ready: boolean }) {
       id="hero"
       className="relative flex min-h-screen items-center justify-center overflow-hidden"
     >
-      {/* Golden AI core */}
-      <div className="pointer-events-none absolute inset-0 opacity-90">
-        <AiCore />
-      </div>
+      {/* ── living AI intelligence field, back to front ── */}
+      <AmbientGlow />
+      <OrbitalLayer className="opacity-80" />
+      <NeuralNetworkLayer />
+      <ParticleField />
+      <AnimatedDataField />
 
-      {/* rotating golden light sweep */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[140vh] -translate-x-1/2 -translate-y-1/2 gold-sweep opacity-70" />
-
-      {/* breathing golden aura */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[70vh] w-[70vh] -translate-x-1/2 -translate-y-1/2 gold-aura" />
-
-      {/* radial vignette */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,var(--background)_78%)]" />
-      <div className="pointer-events-none absolute inset-0 grain opacity-40" />
+      {/* radial vignette keeps the field from competing with the type */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_28%,color-mix(in_oklch,var(--background)_82%,transparent)_62%,var(--background)_88%)]" />
+      <div className="pointer-events-none absolute inset-0 grain opacity-30" />
 
       <div className="relative z-10 flex flex-col items-center px-6 text-center">
         <motion.div
