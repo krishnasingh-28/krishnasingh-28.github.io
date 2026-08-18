@@ -94,7 +94,7 @@ export const skillGraph = {
     { id: 'pytorch', label: 'PyTorch', group: 'ai', x: 40, y: 88 },
     { id: 'mcp', label: 'MCP', group: 'ai', x: 64, y: 76 },
     { id: 'postman', label: 'Postman', group: 'ops', x: 10, y: 34 },
-    { id: 'aws', label: 'AWS', group: 'ops', x: 24, y: 92 },
+    { id: 'aws', label: 'AWS', group: 'ops', x: 64, y: 96 },
     { id: 'gcp', label: 'GCP', group: 'ops', x: 76, y: 92 },
     { id: 'deploy', label: 'Deployment', group: 'ops', x: 50, y: 90 },
     { id: 'docker', label: 'Docker', group: 'ops', x: 88, y: 82 },
