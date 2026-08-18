@@ -6,6 +6,7 @@ import {
   fitCanvas,
   lerp,
   observeResize,
+  pointer,
   pointerTarget,
   useLightweightMode,
   usePointerField,
@@ -85,6 +86,16 @@ export function ParticleField({ className = '' }: { className?: string }) {
     const px = { x: 0, y: 0 }
     let raf = 0
     let last = performance.now()
+    let top = 0
+    let left = 0
+    const syncRect = () => {
+      const r = canvas.getBoundingClientRect()
+      top = r.top
+      left = r.left
+    }
+    syncRect()
+    window.addEventListener('scroll', syncRect, { passive: true })
+    const stirRadius = 200
 
     const draw = (now: number) => {
       const dt = Math.min((now - last) / 1000, 0.05)
@@ -103,6 +114,22 @@ export function ParticleField({ className = '' }: { className?: string }) {
         p.x += p.vx * dt
         p.y += p.vy * dt
         p.twinkle += p.twinkleSpeed * dt
+
+        // cursor stirs the motes: they orbit the pointer and drag in its wake
+        if (pointer.active > 0.01) {
+          const dx = p.x + left - pointer.ex
+          const dy = p.y + top - pointer.ey
+          const dist = Math.hypot(dx, dy) || 1
+          if (dist < stirRadius) {
+            const f = (1 - dist / stirRadius) ** 2 * pointer.active * p.z
+            // tangential swirl
+            p.x += (-dy / dist) * f * 130 * dt
+            p.y += (dx / dist) * f * 130 * dt
+            // gentle wake drag
+            p.x += pointer.vx * f * 0.16 * dt
+            p.y += pointer.vy * f * 0.16 * dt
+          }
+        }
 
         // wrap with a margin so parallax never reveals an empty edge
         const m = 40
@@ -133,6 +160,7 @@ export function ParticleField({ className = '' }: { className?: string }) {
       return () => {
         cancelAnimationFrame(once)
         cancelAnimationFrame(raf)
+        window.removeEventListener('scroll', syncRect)
         stopResize()
       }
     }
@@ -140,6 +168,7 @@ export function ParticleField({ className = '' }: { className?: string }) {
     raf = requestAnimationFrame(draw)
     return () => {
       cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', syncRect)
       stopResize()
       particles = []
     }
