@@ -31,7 +31,7 @@ export function Experience() {
                 key={exp.company}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
+                viewport={{ once: false, margin: '-60px' }}
                 transition={{ delay: i * 0.08, duration: 0.6 }}
                 className="md:pl-12"
               >

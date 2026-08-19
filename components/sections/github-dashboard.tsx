@@ -69,7 +69,7 @@ function Heatmap() {
             key={i}
             initial={{ opacity: 0, scale: 0.4 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: (i % weeks) * 0.006, duration: 0.25 }}
             className="h-2.5 w-2.5 rounded-[3px]"
             style={{ background: colors[level] }}
@@ -211,7 +211,7 @@ export function GithubDashboard() {
             rel="noreferrer"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: false, margin: '-40px' }}
             transition={{ delay: i * 0.06, duration: 0.5 }}
             className="group rounded-2xl border border-border bg-card/50 p-5 transition-colors hover:border-gold/40"
           >

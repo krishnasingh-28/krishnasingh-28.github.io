@@ -55,7 +55,7 @@ export function Skills() {
                 strokeOpacity={active ? 0.8 : 0.25}
                 initial={{ pathLength: 0 }}
                 whileInView={{ pathLength: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 1, delay: i * 0.05 }}
               />
             )
@@ -74,7 +74,7 @@ export function Skills() {
               onBlur={() => setHovered(null)}
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ delay: i * 0.05, duration: 0.5 }}
               className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border font-mono transition-all duration-300"
               style={{

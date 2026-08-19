@@ -23,7 +23,7 @@ export function Contact() {
       <motion.div
         initial={{ opacity: 0, y: 26 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
+        viewport={{ once: false, margin: '-60px' }}
         transition={{ duration: 0.7 }}
         className="glass gold-glow relative overflow-hidden rounded-3xl p-8 md:p-12"
       >
@@ -45,7 +45,7 @@ export function Contact() {
               rel="noreferrer"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ delay: i * 0.06, duration: 0.5 }}
               className="group flex items-center justify-between rounded-2xl border border-border bg-background/40 p-5 transition-colors hover:border-gold/50"
             >

@@ -14,7 +14,7 @@ export function About() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: false, margin: '-80px' }}
           transition={{ duration: 0.7 }}
         >
           <p className="text-pretty text-lg leading-relaxed text-foreground/80">
@@ -31,7 +31,7 @@ export function About() {
                 key={item.t}
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ delay: 0.1 * i, duration: 0.5 }}
                 className="relative"
               >
@@ -49,7 +49,7 @@ export function About() {
               key={s.label}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: false, margin: '-40px' }}
               transition={{ delay: 0.06 * i, duration: 0.6 }}
               className="glass rounded-2xl p-5 transition-colors hover:border-gold/40"
             >

@@ -19,7 +19,7 @@ export function Certifications() {
             rel="noreferrer"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: false, margin: '-50px' }}
             transition={{ delay: i * 0.07, duration: 0.55 }}
             className="group relative block overflow-hidden rounded-2xl border border-border bg-card/50 p-6 transition-colors hover:border-gold/50"
           >

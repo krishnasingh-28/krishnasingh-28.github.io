@@ -20,7 +20,7 @@ export function Architecture() {
             key={arch.title}
             initial={{ opacity: 0, y: 26 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: false, margin: '-60px' }}
             transition={{ delay: i * 0.08, duration: 0.6 }}
             className="glass group relative overflow-hidden rounded-3xl p-7 transition-colors hover:border-gold/30"
           >

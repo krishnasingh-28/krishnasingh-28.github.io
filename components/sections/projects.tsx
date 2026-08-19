@@ -31,7 +31,7 @@ function TiltCard({
       tabIndex={0}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: false, margin: '-60px' }}
       transition={{ delay: index * 0.08, duration: 0.6 }}
       onClick={onOpen}
       onKeyDown={(e) => {

@@ -16,7 +16,7 @@ export function FlowDiagram({
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: i * 0.12, duration: 0.4 }}
             className={`relative rounded-lg border border-gold/25 bg-card/60 font-mono text-foreground/85 ${
               compact ? 'px-2.5 py-1.5 text-[11px]' : 'px-3.5 py-2 text-xs'

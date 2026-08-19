@@ -16,7 +16,7 @@ export function SectionHeading({
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
+        viewport={{ once: false, margin: '-80px' }}
         transition={{ duration: 0.6 }}
         className="flex items-center gap-4"
       >
@@ -31,7 +31,7 @@ export function SectionHeading({
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
+        viewport={{ once: false, margin: '-80px' }}
         transition={{ duration: 0.7, delay: 0.05 }}
         className="mt-4 text-balance text-4xl font-semibold tracking-tight text-foreground md:text-5xl"
       >
