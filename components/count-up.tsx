@@ -13,11 +13,14 @@ export function CountUp({
   duration?: number
 }) {
   const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
+  const inView = useInView(ref, { once: false, margin: '-60px' })
   const [value, setValue] = useState(0)
 
   useEffect(() => {
-    if (!inView) return
+    if (!inView) {
+      setValue(0)
+      return
+    }
     const decimals = Number.isInteger(to) ? 0 : 1
     const factor = Math.pow(10, decimals)
     const start = performance.now()
