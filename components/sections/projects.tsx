@@ -12,6 +12,8 @@ const flowMap: Record<string, string[]> = {
   rag: ['Query', 'Embed', 'Retrieve', 'Re-rank', 'Generate', 'Stream'],
   agent: ['Input', 'Intent', 'Agent', 'Tools', 'Respond'],
   vision: ['Frame', 'Detect', 'Embed', 'Match', 'Identity'],
+  crm: ['Message', 'MCP', 'CRM Tools', 'Agent', 'Response'],
+  interview: ['Resume', 'Question', 'Interview', 'Evaluate', 'Feedback'],
 }
 
 function TiltCard({

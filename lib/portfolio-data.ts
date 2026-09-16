@@ -5,7 +5,7 @@ export const profile = {
   email: 'krishnasingh8404@gmail.com',
   github: 'https://github.com/krishnasingh-28',
   linkedin: 'https://www.linkedin.com/in/krishna-singh28/',
-  resume: 'https://drive.google.com/file/d/1cIbIkHgYZYRNJ1nV8sgQ9p9xSkQYA6ry/view?usp=sharing',
+  resume: 'https://drive.google.com/file/d/10l5GsCDbVTmXSqgTjyYwseVBxFzMLHEf/view?usp=sharing',
   summary:
     'I architect and ship production-grade AI systems — from retrieval pipelines and reasoning engines to autonomous agents and streaming backends. I care about the boring parts that make AI reliable: latency budgets, evaluation, observability, and clean system design.',
 }
@@ -21,13 +21,28 @@ export const loaderModules = [
 export const stats = [
   { value: 1.5, suffix: '+', label: 'Years of Experience' },
   { value: 6, suffix: '+', label: 'Production AI Systems' },
-  { value: 6, suffix: '+', label: 'Projects Built' },
+  { value: 8, suffix: '+', label: 'Projects Built' },
   { value: 3, suffix: '', label: 'AI Domains' },
   { value: 3, suffix: '+', label: 'Clients Served' },
-  { value: 2, suffix: '', label: 'Architectures Designed' },
+  { value: 4, suffix: '', label: 'Architectures Designed' },
 ]
 
 export const experiences = [
+  {
+    company: 'Kaay Labs',
+    role: 'Gen AI Engineer',
+    period: 'August 2026 — Present',
+    context: 'Generative AI & Intelligent Automation',
+    summary:
+      'Engineering production-ready generative AI systems, agentic workflows, and retrieval-backed applications that turn complex business processes into reliable software.',
+    highlights: [
+      'Designed and shipped LLM-powered applications with structured tool use, retrieval, and evaluation workflows.',
+      'Built scalable Python and FastAPI services for agent orchestration, streaming responses, and production integrations.',
+      'Improved reliability through observability, prompt and model evaluation, and practical guardrails for enterprise AI.',
+    ],
+    stack: ['Generative AI', 'LLMs', 'AI Agents', 'RAG', 'Python', 'FastAPI'],
+    diagram: 'rag',
+  },
   {
     company: 'FundsApp Wealth Technologies',
     role: 'Associate AI/ML Engineer',
@@ -92,6 +107,7 @@ export const skillGraph = {
     { id: 'opencv', label: 'OpenCV', group: 'ai', x: 8, y: 92 },
     { id: 'yolo', label: 'YOLO', group: 'ai', x: 24, y: 94 },
     { id: 'pytorch', label: 'PyTorch', group: 'ai', x: 40, y: 88 },
+    { id: 'mediapipe', label: 'MediaPipe', group: 'ai', x: 52, y: 96 },
     { id: 'mcp', label: 'MCP', group: 'ai', x: 64, y: 76 },
     { id: 'postman', label: 'Postman', group: 'ops', x: 10, y: 34 },
     { id: 'aws', label: 'AWS', group: 'ops', x: 64, y: 96 },
@@ -106,6 +122,7 @@ export const skillGraph = {
     ['cv', 'opencv'],
     ['cv', 'yolo'],
     ['cv', 'pytorch'],
+    ['cv', 'mediapipe'],
     ['fastapi', 'postgres'],
     ['fastapi', 'mongodb'],
     ['fastapi', 'rag'],
@@ -184,6 +201,56 @@ export const projects = [
     flow: 'agent',
   },
   {
+    title: 'MCP CRM Chatbot',
+    repo: 'https://github.com/krishnasingh-28/mcp-crm-chatbot',
+    tag: 'MCP & CRM Automation',
+    blurb:
+      'An MCP-powered conversational CRM assistant that turns natural-language requests into safe, actionable customer and pipeline workflows.',
+    challenge:
+      'Give teams a conversational interface for CRM work without sacrificing tool safety, structured actions, or traceability.',
+    architecture:
+      'A chat request is routed through the agent, validated against MCP tool schemas, executed against CRM capabilities, and returned as a concise streamed response with action context.',
+    stack: ['Python', 'LLMs', 'MCP', 'AI Agents', 'CRM Automation', 'FastAPI'],
+    decisions: [
+      'MCP tool contracts keep CRM actions discoverable, typed, and permission-aware.',
+      'Agent routing separates read-only context gathering from state-changing operations.',
+      'Structured responses make every action easier to review and audit.',
+    ],
+    results: [
+      'Natural-language CRM operations',
+      'Reusable MCP tool layer',
+      'Safer agent-driven automation',
+    ],
+    lessons:
+      'Tool boundaries and explicit action schemas are the foundation of dependable business agents.',
+    flow: 'crm',
+  },
+  {
+    title: 'AI Interview Platform',
+    repo: 'https://github.com/krishnasingh-28/ai-interview-platform',
+    tag: 'AI Assessment Platform',
+    blurb:
+      'An intelligent interview platform that combines structured candidate sessions, AI-generated questions, and automated feedback.',
+    challenge:
+      'Create a consistent, engaging interview experience that produces useful evaluation signals without replacing human judgment.',
+    architecture:
+      'Candidate and role context feed an interview orchestrator, which generates questions, captures responses, evaluates competencies, and presents structured feedback for review.',
+    stack: ['TypeScript', 'LLMs', 'AI Evaluation', 'Interview Workflows', 'Streaming UI'],
+    decisions: [
+      'Role-aware question generation keeps interviews relevant to the target competencies.',
+      'Structured evaluation criteria make model feedback consistent and reviewable.',
+      'A staged workflow separates interview flow, scoring, and presentation concerns.',
+    ],
+    results: [
+      'Consistent AI-assisted interviews',
+      'Structured candidate feedback',
+      'Reusable evaluation workflow',
+    ],
+    lessons:
+      'AI assessment works best as an evidence-gathering layer that supports thoughtful human decisions.',
+    flow: 'interview',
+  },
+  {
     title: 'Face Recognition System',
     repo: 'https://github.com/krishnasingh-28/Face-Recognition-App',
     tag: 'Computer Vision',
@@ -235,12 +302,24 @@ export const architectures = [
       'A client connects over WebSocket, the agent runtime calls tools and models, and tokens stream back continuously with memory in Redis.',
     stages: ['Socket', 'Agent', 'Tools', 'Memory', 'Stream'],
   },
+  {
+    title: 'MCP CRM Agent',
+    description:
+      'A conversational CRM request is interpreted by an agent, validated through MCP contracts, executed with scoped tools, and returned with an auditable result.',
+    stages: ['Chat', 'Agent', 'MCP', 'CRM Tools', 'Result'],
+  },
+  {
+    title: 'AI Interview Platform',
+    description:
+      'Candidate and role context drive an interview workflow that generates questions, captures answers, evaluates competencies, and produces structured feedback.',
+    stages: ['Context', 'Questions', 'Interview', 'Evaluate', 'Feedback'],
+  },
 ]
 
 export const techStack = {
   Languages: ['Python', 'TypeScript', 'SQL', 'Bash'],
   Backend: ['FastAPI', 'WebSockets', 'REST', 'Postman'],
-  AI: ['LLMs', 'RAG', 'LangChain', 'LangGraph', 'MCP', 'Embeddings', 'Computer Vision', 'OpenCV', 'YOLO', 'AI Agents'],
+  AI: ['LLMs', 'RAG', 'LangChain', 'LangGraph', 'MCP', 'Embeddings', 'Computer Vision', 'OpenCV', 'YOLO', 'MediaPipe', 'AI Agents'],
   Frameworks: ['PyTorch', 'TensorFlow', 'scikit-learn', 'OpenCV', 'Pandas', 'NumPy'],
   Databases: ['PostgreSQL', 'Vector DB', 'MongoDB'],
   Cloud: ['AWS', 'GCP', 'Vercel', 'Serverless'],
