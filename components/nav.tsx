@@ -50,8 +50,13 @@ export function Nav() {
           className="flex items-center gap-2.5"
           aria-label="Back to top"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-full border border-gold/50 font-mono text-xs font-bold text-gold">
-            KS
+          <span className="relative h-9 w-9 overflow-hidden rounded-full border border-gold/50">
+            {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimizer */}
+            <img
+              src="/profile/krishna.png"
+              alt="Krishna Singh"
+              className="h-full w-full object-cover object-top"
+            />
           </span>
           <span className="hidden font-mono text-xs uppercase tracking-[0.2em] text-foreground/70 sm:inline">
             AI Systems Engineer
