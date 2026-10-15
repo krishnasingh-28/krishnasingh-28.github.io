@@ -188,6 +188,19 @@ export function Hero({ ready }: { ready: boolean }) {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background/70 to-transparent" />
         <div className="pointer-events-none absolute inset-0 grain opacity-20" />
 
+        {/* status pill, pinned top-left under the navbar */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={ready ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2, duration: 0.7 }}
+          className="absolute left-6 top-24 z-10 flex items-center gap-2 rounded-full border border-gold/30 bg-background/40 px-4 py-1.5 backdrop-blur-sm md:left-10 md:top-28"
+        >
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold" />
+          <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-gold">
+            System Online
+          </span>
+        </motion.div>
+
         {/* ── content ── */}
         <div className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-32 text-center md:pb-28">
           <h1 className="mb-6 font-bold leading-none tracking-tight md:absolute md:inset-x-0 md:top-[calc(var(--hv)*0.265)] md:-translate-y-1/2 md:px-6">
@@ -206,18 +219,6 @@ export function Hero({ ready }: { ready: boolean }) {
               </motion.span>
             </span>
           </h1>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={ready ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className="mb-5 flex items-center gap-2 rounded-full border border-gold/30 bg-background/40 px-4 py-1.5 backdrop-blur-sm"
-          >
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-gold">
-              System Online
-            </span>
-          </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
