@@ -53,7 +53,7 @@ export function Nav() {
           <span className="relative h-9 w-9 overflow-hidden rounded-full border border-gold/50">
             {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimizer */}
             <img
-              src="/profile/krishna.png"
+              src="/profile/krishna.jpg"
               alt="Krishna Singh"
               className="h-full w-full object-cover object-top"
             />
