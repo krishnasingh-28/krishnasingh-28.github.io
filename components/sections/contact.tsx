@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Mail, FileText, ArrowUpRight } from 'lucide-react'
 import { SectionHeading } from '@/components/section-heading'
 import { GithubIcon, LinkedinIcon } from '@/components/brand-icons'
+import { ContactForm } from '@/components/contact-form'
 import { profile } from '@/lib/portfolio-data'
 
 const channels = [
@@ -36,7 +37,14 @@ export function Contact() {
           </span>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.4fr_1fr] md:gap-10">
+          <div className="min-w-0">
+            <h3 className="mb-5 text-lg font-semibold tracking-tight text-foreground">Send a transmission</h3>
+            <ContactForm />
+          </div>
+
+          <div className="flex min-w-0 flex-col gap-3">
+            <h3 className="mb-2 text-lg font-semibold tracking-tight text-foreground">Or reach me directly</h3>
           {channels.map((c, i) => (
             <motion.a
               key={c.label}
@@ -49,15 +57,15 @@ export function Contact() {
               transition={{ delay: i * 0.06, duration: 0.5 }}
               className="group flex items-center justify-between rounded-2xl border border-border bg-background/40 p-5 transition-colors hover:border-gold/50"
             >
-              <div className="flex items-center gap-4">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-gold/30 text-gold">
+              <div className="flex min-w-0 items-center gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gold/30 text-gold">
                   <c.Icon size={16} />
                 </span>
                 <div>
                   <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                     {c.label}
                   </p>
-                  <p className="text-sm text-foreground">{c.value}</p>
+                  <p className="break-all text-sm text-foreground">{c.value}</p>
                 </div>
               </div>
               <ArrowUpRight
@@ -66,6 +74,7 @@ export function Contact() {
               />
             </motion.a>
           ))}
+          </div>
         </div>
       </motion.div>
 

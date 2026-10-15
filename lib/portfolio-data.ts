@@ -6,6 +6,8 @@ export const profile = {
   github: 'https://github.com/krishnasingh-28',
   linkedin: 'https://www.linkedin.com/in/krishna-singh28/',
   resume: 'https://drive.google.com/file/d/10l5GsCDbVTmXSqgTjyYwseVBxFzMLHEf/view?usp=sharing',
+  // Web3Forms access key — public by design, it can only deliver to the inbox it was issued for
+  web3formsKey: '4397fc0b-feb2-4c82-8c0f-f04afb69208c',
   summary:
     'I architect and ship production-grade AI systems — from retrieval pipelines and reasoning engines to autonomous agents and streaming backends. I care about the boring parts that make AI reliable: latency budgets, evaluation, observability, and clean system design.',
 }
