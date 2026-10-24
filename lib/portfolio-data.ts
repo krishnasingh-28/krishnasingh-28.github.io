@@ -357,43 +357,4 @@ export const certifications = [
 
 export const githubStats = {
   username: 'krishnasingh-28',
-  totalContributions: 1284,
-  followers: 340,
-  stars: 512,
-  languages: [
-    { name: 'Python', pct: 62, color: 'oklch(0.82 0.13 84)' },
-    { name: 'TypeScript', pct: 20, color: 'oklch(0.7 0.09 82)' },
-    { name: 'Jupyter', pct: 11, color: 'oklch(0.58 0.06 80)' },
-    { name: 'Other', pct: 7, color: 'oklch(0.45 0.02 78)' },
-  ],
-  pinned: [
-    {
-      name: 'gemini-rag-engine',
-      description: 'Grounded RAG engine with hybrid retrieval and streaming.',
-      language: 'Python',
-      stars: 148,
-      forks: 32,
-    },
-    {
-      name: 'conversational-ai',
-      description: 'Streaming multi-turn agent with tool use and voice.',
-      language: 'Python',
-      stars: 96,
-      forks: 18,
-    },
-    {
-      name: 'face-recognition-api',
-      description: 'Real-time face recognition served behind FastAPI.',
-      language: 'Python',
-      stars: 74,
-      forks: 21,
-    },
-    {
-      name: 'fastapi-ai-template',
-      description: 'Production FastAPI template for LLM-ready backends.',
-      language: 'Python',
-      stars: 210,
-      forks: 47,
-    },
-  ],
 }

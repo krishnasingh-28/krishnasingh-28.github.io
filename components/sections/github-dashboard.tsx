@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import useSWR from 'swr'
 import { motion } from 'framer-motion'
 import { Star, GitFork } from 'lucide-react'
@@ -33,48 +33,108 @@ const langColors = [
   'oklch(0.45 0.02 78)',
 ]
 
-// Deterministic pseudo-random so SSR and client match.
-function seeded(i: number) {
-  const x = Math.sin(i * 12.9898) * 43758.5453
-  return x - Math.floor(x)
-}
+type Contribution = { date: string; count: number; level: number }
+type ContribResponse = { total: Record<string, number>; contributions: Contribution[] }
 
-function Heatmap() {
-  const weeks = 52
-  const days = 7
+const heatColors = [
+  'oklch(0.22 0.004 70)',
+  'oklch(0.4 0.05 82)',
+  'oklch(0.55 0.08 83)',
+  'oklch(0.7 0.11 84)',
+  'oklch(0.85 0.14 85)',
+]
+
+const weeks = 53
+const days = 7
+
+function Heatmap({ days: data, loading }: { days: Contribution[] | null; loading: boolean }) {
+  const [hover, setHover] = useState<number | null>(null)
+
+  // Pad the first week so the grid starts on the correct weekday (Sunday-first, like GitHub).
   const cells = useMemo(() => {
-    return Array.from({ length: weeks * days }, (_, i) => {
-      const r = seeded(i)
-      const level = r > 0.82 ? 4 : r > 0.68 ? 3 : r > 0.5 ? 2 : r > 0.32 ? 1 : 0
-      return level
-    })
-  }, [])
+    if (!data?.length) return Array.from({ length: weeks * days }, () => null as Contribution | null)
+    const lead = new Date(data[0].date + 'T00:00:00Z').getUTCDay()
+    return [...Array<null>(lead).fill(null), ...data]
+  }, [data])
 
-  const colors = [
-    'oklch(0.22 0.004 70)',
-    'oklch(0.4 0.05 82)',
-    'oklch(0.55 0.08 83)',
-    'oklch(0.7 0.11 84)',
-    'oklch(0.85 0.14 85)',
-  ]
+  const hovered = hover !== null ? cells[hover] : null
 
   return (
-    <div className="no-scrollbar overflow-x-auto">
-      <div
-        className="grid w-max gap-1"
-        style={{ gridTemplateColumns: `repeat(${weeks}, minmax(0, 1fr))`, gridAutoFlow: 'column', gridTemplateRows: `repeat(${days}, minmax(0, 1fr))` }}
-      >
-        {cells.map((level, i) => (
-          <motion.span
-            key={i}
-            initial={{ opacity: 0, scale: 0.4 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false }}
-            transition={{ delay: (i % weeks) * 0.006, duration: 0.25 }}
-            className="h-2.5 w-2.5 rounded-[3px]"
-            style={{ background: colors[level] }}
-          />
-        ))}
+    <div>
+      <div className="no-scrollbar overflow-x-auto pb-2" onMouseLeave={() => setHover(null)}>
+        <div
+          className="grid w-max gap-1"
+          style={{
+            gridTemplateColumns: `repeat(${Math.ceil(cells.length / days)}, minmax(0, 1fr))`,
+            gridAutoFlow: 'column',
+            gridTemplateRows: `repeat(${days}, minmax(0, 1fr))`,
+          }}
+        >
+          {cells.map((c, i) => {
+            const col = Math.floor(i / days)
+            const row = i % days
+            let scale = 1
+            let lift = 0
+            if (hover !== null) {
+              const hc = Math.floor(hover / days)
+              const hr = hover % days
+              const d2 = (col - hc) ** 2 + (row - hr) ** 2
+              const f = Math.exp(-d2 / 6)
+              scale = 1 + 0.9 * f
+              lift = -3 * f
+            }
+            return (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, scale: 0.4 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: col * 0.008, duration: 0.3 }}
+                onMouseEnter={() => c && setHover(i)}
+                className={`h-2.5 w-2.5 rounded-[3px] ${loading ? 'animate-pulse' : ''}`}
+                style={{
+                  background: heatColors[c?.level ?? 0],
+                  visibility: i < cells.length ? 'visible' : 'hidden',
+                }}
+              >
+                <span
+                  className="block h-full w-full rounded-[3px] transition-transform duration-200 ease-out"
+                  style={{
+                    transform: `translateY(${lift}px) scale(${scale})`,
+                    background: 'inherit',
+                    boxShadow:
+                      scale > 1.3 && (c?.level ?? 0) > 0
+                        ? '0 0 10px oklch(0.85 0.14 85 / 0.55)'
+                        : 'none',
+                  }}
+                />
+              </motion.span>
+            )
+          })}
+        </div>
+      </div>
+      <div className="mt-2 flex h-5 items-center justify-between font-mono text-[11px] text-muted-foreground">
+        <span>
+          {hovered
+            ? `${hovered.count} contribution${hovered.count === 1 ? '' : 's'} on ${new Date(
+                hovered.date + 'T00:00:00Z',
+              ).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                timeZone: 'UTC',
+              })}`
+            : loading
+              ? 'Loading contributions…'
+              : ''}
+        </span>
+        <span className="flex items-center gap-1.5">
+          Less
+          {heatColors.map((c) => (
+            <span key={c} className="h-2.5 w-2.5 rounded-[3px]" style={{ background: c }} />
+          ))}
+          More
+        </span>
       </div>
     </div>
   )
@@ -90,6 +150,12 @@ export function GithubDashboard() {
   )
   const { data: repos } = useSWR<GhRepo[]>(
     `https://api.github.com/users/${username}/repos?per_page=100&sort=updated`,
+    fetcher,
+    { revalidateOnFocus: false },
+  )
+
+  const { data: contrib, error: contribError } = useSWR<ContribResponse>(
+    `https://github-contributions-api.jogruber.de/v4/${username}?y=last`,
     fetcher,
     { revalidateOnFocus: false },
   )
@@ -132,12 +198,12 @@ export function GithubDashboard() {
     return { stars, languages, pinned, repoCount: own.length }
   }, [repos])
 
-  const followers = user?.followers ?? githubStats.followers
-  const stars = derived?.stars ?? githubStats.stars
-  const languages = derived?.languages ?? githubStats.languages
-  const pinned =
-    derived?.pinned ??
-    githubStats.pinned.map((p) => ({ ...p, url: `https://github.com/${username}` }))
+  // Only live GitHub data is shown; nothing is invented while loading or on failure.
+  const followers = user?.followers ?? 0
+  const stars = derived?.stars ?? 0
+  const languages = derived?.languages ?? []
+  const pinned = derived?.pinned ?? []
+  const totalContribs = contrib ? Object.values(contrib.total)[0] : null
 
   return (
     <section className="relative mx-auto max-w-6xl px-6 py-28 md:py-36">
@@ -177,11 +243,16 @@ export function GithubDashboard() {
         </div>
 
         <div className="mt-8">
-          <Heatmap />
+          <Heatmap days={contrib?.contributions ?? null} loading={!contrib && !contribError} />
+          {totalContribs != null && (
+            <p className="mt-1 font-mono text-xs text-muted-foreground">
+              {totalContribs.toLocaleString()} contributions in the last year
+            </p>
+          )}
         </div>
 
         {/* Languages */}
-        <div className="mt-8">
+        {languages.length > 0 && <div className="mt-8">
           <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
             Most Used Languages
           </p>
@@ -198,7 +269,7 @@ export function GithubDashboard() {
               </span>
             ))}
           </div>
-        </div>
+        </div>}
       </div>
 
       {/* Top repos */}
