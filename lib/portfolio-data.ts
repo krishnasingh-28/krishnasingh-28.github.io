@@ -157,7 +157,7 @@ export const projects = [
     repo: 'https://github.com/krishnasingh-28/Gemini-RAG-Engine',
     tag: 'Retrieval-Augmented Generation',
     blurb:
-      'A grounded question-answering engine with source-cited responses, built on Google's managed File Search and Gemini 2.5 Flash.',
+      'A grounded question-answering engine with source-cited responses, built on Google’s managed File Search and Gemini 2.5 Flash.',
     challenge:
       'Deliver trustworthy answers over private documents without hallucination.',
     architecture:
