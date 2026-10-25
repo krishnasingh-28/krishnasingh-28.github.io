@@ -157,24 +157,24 @@ export const projects = [
     repo: 'https://github.com/krishnasingh-28/Gemini-RAG-Engine',
     tag: 'Retrieval-Augmented Generation',
     blurb:
-      'A grounded question-answering engine with source-cited responses, hybrid retrieval, and streaming generation.',
+      'A grounded question-answering engine with source-cited responses, built on Google's managed File Search and Gemini 2.5 Flash.',
     challenge:
-      'Deliver trustworthy, low-latency answers over large private knowledge bases without hallucination.',
+      'Deliver trustworthy answers over private documents without hallucination.',
     architecture:
-      'Chunk + embed documents into a vector store, hybrid (dense + keyword) retrieval, re-ranking, then Gemini generation with inline citations, streamed to the client.',
-    stack: ['Python', 'FastAPI', 'Gemini', 'Vector DB', 'LangChain', 'SSE Streaming'],
+      'A FastAPI backend ingests PDF/TXT/CSV files into a Google File Search Store (managed chunking, embedding, and vector storage); chat queries retrieve through File Search and Gemini 2.5 Flash generates an answer with source citations.',
+    stack: ['Python', 'FastAPI', 'Gemini 2.5 Flash', 'Google File Search', 'google-genai SDK'],
     decisions: [
-      'Hybrid retrieval + re-ranking to raise precision on ambiguous queries.',
-      'Token streaming over SSE for sub-second perceived latency.',
-      'Citation enforcement to keep answers grounded and auditable.',
+      'Managed File Search for ingestion and retrieval instead of running my own vector DB.',
+      'API-first design (/upload-docs, /chat) so any web or mobile client can reuse it.',
+      'Source citations returned with every answer to keep it grounded and auditable.',
     ],
     results: [
       'Grounded answers with verifiable sources',
-      'Sub-second first-token latency',
-      'Scales across large document corpora',
+      'Multi-file ingestion (PDF, TXT, CSV) in one call',
+      'Reusable API backend with no retrieval infrastructure to maintain',
     ],
     lessons:
-      'Retrieval quality — not the model — is usually the ceiling. Invest in chunking, re-ranking, and evaluation first.',
+      'Retrieval quality — not the model — is usually the ceiling. A managed retrieval layer gets you moving fast; evaluate it before layering on custom tuning.',
     flow: 'rag',
   },
   {
