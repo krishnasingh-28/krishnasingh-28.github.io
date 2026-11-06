@@ -21,4 +21,4 @@ Early-career AI/ML professional with hands-on experience in face recognition pro
 
 - 📧 Email: [krishnasingh8404@gmail.com](mailto:krishnasingh8404@gmail.com)
 - 🔗 LinkedIn: https://www.linkedin.com/in/krishna-singh28/
-- 🌐 Portfolio: https://krishnasingh-28.github.io/
+- 🌐 Portfolio: https://krishnasingh.si

@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Space_Grotesk, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+import { SITE_URL } from '@/lib/site'
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -16,6 +17,8 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: '/' },
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',
@@ -40,6 +43,7 @@ export const metadata: Metadata = {
     description:
       'Production AI • LLM Engineering • Intelligent Systems. Explore the engineering work of Krishna Singh.',
     type: 'website',
+    url: SITE_URL,
   },
 }
 
