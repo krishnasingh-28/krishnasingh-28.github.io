@@ -14,6 +14,7 @@ const flowMap: Record<string, string[]> = {
   vision: ['Frame', 'Detect', 'Embed', 'Match', 'Identity'],
   crm: ['Message', 'MCP', 'CRM Tools', 'Agent', 'Response'],
   interview: ['Resume', 'Question', 'Interview', 'Evaluate', 'Feedback'],
+  airpad: ['Webcam', 'Hand Track', 'Gesture', 'Smooth', 'Ink'],
 }
 
 function TiltCard({
