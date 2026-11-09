@@ -153,6 +153,31 @@ export const skillGraph = {
 
 export const projects = [
   {
+    title: 'AirPad',
+    repo: 'https://github.com/krishnasingh-28/Air-Pad',
+    tag: 'Computer Vision',
+    blurb:
+      'A finger-drawn scratch pad: write and draw in the air with your index finger, tracked live from a webcam using MediaPipe hand landmarks.',
+    challenge:
+      'Make air-writing feel smooth and responsive on a laptop CPU, despite noisy hand tracking, 30 Hz samples, and accidental strokes when the pose changes.',
+    architecture:
+      'A threaded camera reader feeds the newest frame to a MediaPipe HandLandmarker worker (with a square-tile fallback for small hands); gestures are classified and debounced, the fingertip is smoothed with a One Euro filter, and strokes are fitted with Catmull-Rom splines and composited incrementally over the live view or a clean board.',
+    stack: ['Python', 'MediaPipe', 'OpenCV', 'NumPy', 'One Euro Filter', 'pytest'],
+    decisions: [
+      'Pipelined threads (camera, tracking, rendering) that only process the newest frame, keeping latency low with no queue build-up.',
+      'Incremental ink rendering with dirty-rect compositing, so per-frame cost stays constant however long a stroke gets.',
+      'Gesture-based pen control (draw, move, erase) with hysteresis and dwell-to-press toolbar buttons, so no mouse or keyboard is needed.',
+    ],
+    results: [
+      '~30 FPS live with ~44 ms capture-to-display latency, measured on a throttled laptop on battery',
+      'Resting fingertip jitter reduced from 2.0 to 0.64 px with the One Euro filter',
+      '170-test suite covering gestures, canvas, UI flows, and real MediaPipe inference',
+    ],
+    lessons:
+      'Perceived quality in real-time vision comes from the pipeline around the model: filtering, debouncing, and latency control matter as much as the tracker itself.',
+    flow: 'airpad',
+  },
+  {
     title: 'Gemini RAG Engine',
     repo: 'https://github.com/krishnasingh-28/Gemini-RAG-Engine',
     tag: 'Retrieval-Augmented Generation',
@@ -276,31 +301,6 @@ export const projects = [
     lessons:
       'Good embeddings + a clean gallery beat a bigger classifier for practical recognition.',
     flow: 'vision',
-  },
-  {
-    title: 'AirPad',
-    repo: 'https://github.com/krishnasingh-28/Air-Pad',
-    tag: 'Computer Vision',
-    blurb:
-      'A finger-drawn scratch pad: write and draw in the air with your index finger, tracked live from a webcam using MediaPipe hand landmarks.',
-    challenge:
-      'Make air-writing feel smooth and responsive on a laptop CPU, despite noisy hand tracking, 30 Hz samples, and accidental strokes when the pose changes.',
-    architecture:
-      'A threaded camera reader feeds the newest frame to a MediaPipe HandLandmarker worker (with a square-tile fallback for small hands); gestures are classified and debounced, the fingertip is smoothed with a One Euro filter, and strokes are fitted with Catmull-Rom splines and composited incrementally over the live view or a clean board.',
-    stack: ['Python', 'MediaPipe', 'OpenCV', 'NumPy', 'One Euro Filter', 'pytest'],
-    decisions: [
-      'Pipelined threads (camera, tracking, rendering) that only process the newest frame, keeping latency low with no queue build-up.',
-      'Incremental ink rendering with dirty-rect compositing, so per-frame cost stays constant however long a stroke gets.',
-      'Gesture-based pen control (draw, move, erase) with hysteresis and dwell-to-press toolbar buttons, so no mouse or keyboard is needed.',
-    ],
-    results: [
-      '~30 FPS live with ~44 ms capture-to-display latency, measured on a throttled laptop on battery',
-      'Resting fingertip jitter reduced from 2.0 to 0.64 px with the One Euro filter',
-      '170-test suite covering gestures, canvas, UI flows, and real MediaPipe inference',
-    ],
-    lessons:
-      'Perceived quality in real-time vision comes from the pipeline around the model: filtering, debouncing, and latency control matter as much as the tracker itself.',
-    flow: 'airpad',
   },
 ]
 
