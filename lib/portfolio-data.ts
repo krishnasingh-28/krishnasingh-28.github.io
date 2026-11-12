@@ -355,6 +355,18 @@ export const techStack = {
 
 export const certifications = [
   {
+    title: 'Agentic AI Bootcamp',
+    issuer: 'Udemy',
+    year: 'November 2026',
+    link: 'https://drive.google.com/file/d/1Sjhm-TTAey1J8vQgL0SI8FxdlvMynMeD/view?usp=sharing',
+  },
+  {
+    title: 'Claude Code 101',
+    issuer: 'Anthropic',
+    year: 'October 2026',
+    link: 'https://drive.google.com/file/d/1hl1FjtRRxuQDMR5Z-psgHFCEdOXMo6wL/view?usp=sharing',
+  },
+  {
     title: 'Claude 101',
     issuer: 'Anthropic',
     year: 'June 2026',
