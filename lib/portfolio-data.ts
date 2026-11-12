@@ -5,7 +5,7 @@ export const profile = {
   email: 'krishnasingh8404@gmail.com',
   github: 'https://github.com/krishnasingh-28',
   linkedin: 'https://www.linkedin.com/in/krishna-singh28/',
-  resume: 'https://drive.google.com/file/d/10l5GsCDbVTmXSqgTjyYwseVBxFzMLHEf/view?usp=sharing',
+  resume: 'https://drive.google.com/file/d/1AyixUm5kzOQe6OSbOQGgWB8pQ0CA5zmB/view?usp=sharing',
   // Web3Forms access key — public by design, it can only deliver to the inbox it was issued for
   web3formsKey: '4397fc0b-feb2-4c82-8c0f-f04afb69208c',
   summary:
