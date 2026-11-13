@@ -32,7 +32,7 @@ export function Contact() {
 
         <div className="mb-8 flex items-center gap-2">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold" />
-          <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-gold">
+          <span className="font-mono text-xs uppercase tracking-[0.3em] text-gold">
             Channel Open — Available for opportunities
           </span>
         </div>
@@ -62,7 +62,7 @@ export function Contact() {
                   <c.Icon size={16} />
                 </span>
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
                     {c.label}
                   </p>
                   <p className="break-all text-sm text-foreground">{c.value}</p>

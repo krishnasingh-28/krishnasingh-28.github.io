@@ -1,12 +1,23 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/section-heading'
 import { skillGraph } from '@/lib/portfolio-data'
 
 export function Skills() {
   const [hovered, setHovered] = useState<string | null>(null)
+  // Phones get a taller three-column layout (mx/my) so chips are tappable without colliding
+  const [phone, setPhone] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 639px)')
+    const update = () => setPhone(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+  const pos = (n: (typeof skillGraph.nodes)[number]) =>
+    phone ? { x: n.mx, y: n.my } : { x: n.x, y: n.y }
 
   const nodeMap = useMemo(
     () => Object.fromEntries(skillGraph.nodes.map((n) => [n.id, n])),
@@ -35,13 +46,18 @@ export function Skills() {
         title="Skills as a connected blueprint."
       />
 
-      <div className="glass relative aspect-[16/11] w-full overflow-hidden rounded-3xl md:aspect-[16/8]">
+      <div
+        className="glass relative aspect-[9/16] w-full overflow-hidden rounded-3xl sm:aspect-[16/11] md:aspect-[16/8]"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) setHovered(null)
+        }}
+      >
         <div className="grain absolute inset-0 opacity-30" />
 
         <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none">
           {skillGraph.edges.map(([a, b], i) => {
-            const na = nodeMap[a]
-            const nb = nodeMap[b]
+            const na = pos(nodeMap[a])
+            const nb = pos(nodeMap[b])
             const active = edgeActive(a, b)
             return (
               <motion.line
@@ -72,16 +88,19 @@ export function Skills() {
               onMouseLeave={() => setHovered(null)}
               onFocus={() => setHovered(node.id)}
               onBlur={() => setHovered(null)}
+              onClick={() => setHovered(node.id)}
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: false }}
               transition={{ delay: i * 0.05, duration: 0.5 }}
-              className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border font-mono transition-all duration-300"
+              className={`absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border font-mono transition-all duration-300 ${
+                isCore
+                  ? 'px-4 py-2.5 text-[0.8rem] sm:py-2'
+                  : 'px-3 py-2 text-xs sm:py-1.5 sm:text-[0.7rem]'
+              }`}
               style={{
-                left: `${node.x}%`,
-                top: `${node.y}%`,
-                fontSize: isCore ? '0.8rem' : '0.7rem',
-                padding: isCore ? '0.5rem 1rem' : '0.35rem 0.75rem',
+                left: `${pos(node).x}%`,
+                top: `${pos(node).y}%`,
                 borderColor: active ? 'oklch(0.82 0.13 84 / 0.6)' : 'oklch(0.4 0.01 75 / 0.4)',
                 background: active
                   ? isCore
@@ -101,7 +120,9 @@ export function Skills() {
         })}
       </div>
       <p className="mt-4 text-center font-mono text-xs text-muted-foreground">
-        Hover a node to trace connected technologies.
+        <span className="[@media(hover:none)]:hidden">Hover</span>
+        <span className="hidden [@media(hover:none)]:inline">Tap</span> a node to trace connected
+        technologies.
       </p>
     </section>
   )

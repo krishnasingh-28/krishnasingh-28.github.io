@@ -50,12 +50,24 @@ function TechSphere({
     return () => cancelAnimationFrame(raf)
   }, [])
 
-  const radius = 150
+  // Size the sphere to its container so it never overflows narrow phones
+  const [size, setSize] = useState(400)
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const ro = new ResizeObserver(([entry]) => setSize(entry.contentRect.width))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+  const compact = size < 380
+  const radius = size * (compact ? 0.36 : 0.375)
+  const fontBase = compact ? 0.56 : 0.62
+  const fontRange = compact ? 0.34 : 0.5
 
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto h-[340px] w-[340px] select-none sm:h-[400px] sm:w-[400px]"
+      className="relative mx-auto aspect-square w-full max-w-[400px] select-none"
       onMouseMove={(e) => {
         const r = containerRef.current?.getBoundingClientRect()
         if (!r) return
@@ -83,14 +95,15 @@ function TechSphere({
         const dim = activeGroup && item.group !== activeGroup
         return (
           <span
-            key={item.label}
+            key={`${item.group}-${item.label}`}
             onMouseEnter={() => onHover(item.label)}
             onMouseLeave={() => onHover(null)}
             className="absolute left-1/2 top-1/2 cursor-default whitespace-nowrap font-mono transition-colors"
             style={{
               transform: `translate(-50%, -50%) translate3d(${x1 * radius}px, ${y1 * radius}px, 0)`,
-              fontSize: `${0.62 + scale * 0.5}rem`,
-              opacity: dim ? 0.12 : 0.35 + scale * 0.65,
+              fontSize: `${fontBase + scale * fontRange}rem`,
+              // Fade the back of the sphere harder on phones so overlapping words stay legible
+              opacity: dim ? 0.12 : compact ? 0.15 + scale ** 2 * 0.85 : 0.35 + scale * 0.65,
               color: item.group === activeGroup ? 'oklch(0.88 0.12 88)' : 'oklch(0.85 0.02 90)',
               zIndex: Math.round(scale * 100),
               textShadow: item.group === activeGroup ? '0 0 12px oklch(0.82 0.13 84 / 0.6)' : 'none',
@@ -163,7 +176,7 @@ export function TechStack() {
                   : items.map((i) => i.label)
                 ).map((t, i) => (
                   <motion.span
-                    key={t}
+                    key={`${t}-${i}`}
                     initial={{ opacity: 0, scale: 0.85 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: i * 0.018, duration: 0.25, ease: 'easeOut' }}

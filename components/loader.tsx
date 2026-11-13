@@ -85,7 +85,7 @@ export function Loader({ onComplete }: { onComplete: () => void }) {
                 style={{ width: `${progress * 100}%` }}
               />
             </div>
-            <div className="mt-2 flex justify-between font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+            <div className="mt-2 flex justify-between font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
               <span>modules</span>
               <span>{Math.round(progress * 100)}%</span>
             </div>

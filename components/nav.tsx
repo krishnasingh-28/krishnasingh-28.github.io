@@ -78,8 +78,9 @@ export function Nav() {
 
         <button
           onClick={() => setOpen((o) => !o)}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground md:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-foreground md:hidden"
           aria-label="Toggle menu"
+          aria-expanded={open}
         >
           {open ? <X size={16} /> : <Menu size={16} />}
         </button>
@@ -91,7 +92,7 @@ export function Nav() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="nav-glass mx-4 mt-2 grid grid-cols-2 gap-1 rounded-2xl p-3 md:hidden"
+            className="mx-4 mt-2 grid grid-cols-2 gap-1 rounded-2xl border border-border bg-background p-3 shadow-2xl shadow-black/60 md:hidden"
           >
             {links.map((l) => (
               <li key={l.id}>

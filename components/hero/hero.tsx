@@ -196,7 +196,7 @@ export function Hero({ ready }: { ready: boolean }) {
           className="absolute left-6 top-24 z-10 flex items-center gap-2 rounded-full border border-gold/30 bg-background/40 px-4 py-1.5 backdrop-blur-sm md:left-10 md:top-28"
         >
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold" />
-          <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-gold">
+          <span className="font-mono text-xs uppercase tracking-[0.3em] text-gold">
             System Online
           </span>
         </motion.div>
@@ -233,7 +233,7 @@ export function Hero({ ready }: { ready: boolean }) {
             initial={{ opacity: 0, y: 20 }}
             animate={ready ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 1.0, duration: 0.8 }}
-            className="mt-3 max-w-3xl font-mono [text-shadow:0_1px_14px_rgb(0_0_0/0.9)] text-[10px] uppercase leading-relaxed tracking-[0.25em] text-muted-foreground sm:text-xs"
+            className="mt-3 max-w-3xl font-mono [text-shadow:0_1px_14px_rgb(0_0_0/0.9)] text-[11px] uppercase leading-relaxed tracking-[0.25em] text-muted-foreground sm:text-xs"
           >
             {profile.tagline}
           </motion.p>
@@ -281,7 +281,7 @@ export function Hero({ ready }: { ready: boolean }) {
             transition={{ delay: 1.4, duration: 0.8 }}
             className="flex flex-col items-center gap-2"
           >
-            <span className="hidden font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground md:block">
+            <span className="hidden font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground md:block">
               Scroll to enter the system
             </span>
             <span className="flex h-8 w-5 items-start justify-center rounded-full border border-border p-1">

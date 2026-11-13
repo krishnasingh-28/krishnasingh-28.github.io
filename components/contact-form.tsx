@@ -9,7 +9,7 @@ type Status = 'idle' | 'sending' | 'success' | 'error'
 
 const fieldClass =
   'w-full rounded-2xl border border-border bg-background/40 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-colors focus:border-gold/50 focus:ring-2 focus:ring-gold/20'
-const labelClass = 'mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted-foreground'
+const labelClass = 'mb-2 block font-mono text-[11px] uppercase tracking-widest text-muted-foreground'
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle')
@@ -56,7 +56,7 @@ export function ContactForm() {
             className="flex min-h-[22rem] flex-col items-center justify-center rounded-2xl border border-gold/30 bg-background/40 p-8 text-center"
           >
             <CheckCircle2 size={40} className="mb-4 text-gold" />
-            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-gold">Message transmitted</p>
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-gold">Message transmitted</p>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
               Thanks for reaching out — I&apos;ll get back to you soon.
             </p>

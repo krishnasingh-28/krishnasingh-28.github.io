@@ -58,7 +58,7 @@ function TiltCard({
     >
       <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-gold/10 blur-3xl transition-opacity group-hover:opacity-100 md:opacity-0" />
 
-      <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">
+      <span className="font-mono text-xs uppercase tracking-[0.25em] text-gold">
         {project.tag}
       </span>
       <h3 className="mt-3 text-2xl font-semibold text-foreground">{project.title}</h3>
@@ -78,7 +78,7 @@ function TiltCard({
           target="_blank"
           rel="noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 font-mono text-[11px] text-foreground/70 transition-colors hover:border-gold/60 hover:text-gold"
+          className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 font-mono text-xs text-foreground/70 transition-colors hover:border-gold/60 hover:text-gold"
           aria-label={`View ${project.title} repository on GitHub`}
         >
           <GithubIcon size={13} />
@@ -128,7 +128,7 @@ export function Projects() {
                 <X size={16} />
               </button>
 
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold">
+              <span className="font-mono text-xs uppercase tracking-[0.25em] text-gold">
                 {project.tag}
               </span>
               <h3 className="mt-2 text-3xl font-bold text-foreground">{project.title}</h3>
@@ -206,7 +206,7 @@ export function Projects() {
 
 function Label({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-gold">{children}</p>
+    <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-gold">{children}</p>
   )
 }
 

@@ -49,7 +49,7 @@ export function Experience() {
                     <div>
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                         <h3 className="text-lg font-semibold text-foreground">{exp.company}</h3>
-                        <span className="font-mono text-[11px] uppercase tracking-widest text-gold">
+                        <span className="font-mono text-xs uppercase tracking-widest text-gold">
                           {exp.context}
                         </span>
                       </div>
@@ -84,7 +84,7 @@ export function Experience() {
                           </ul>
 
                           <div className="mt-6">
-                            <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                            <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
                               System Flow
                             </p>
                             <FlowDiagram stages={diagramMap[exp.diagram]} compact />

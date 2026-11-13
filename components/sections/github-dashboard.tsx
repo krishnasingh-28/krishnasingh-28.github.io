@@ -113,7 +113,7 @@ function Heatmap({ days: data, loading }: { days: Contribution[] | null; loading
           })}
         </div>
       </div>
-      <div className="mt-2 flex h-5 items-center justify-between font-mono text-[11px] text-muted-foreground">
+      <div className="mt-2 flex h-5 items-center justify-between font-mono text-xs text-muted-foreground">
         <span>
           {hovered
             ? `${hovered.count} contribution${hovered.count === 1 ? '' : 's'} on ${new Date(
@@ -253,7 +253,7 @@ export function GithubDashboard() {
 
         {/* Languages */}
         {languages.length > 0 && <div className="mt-8">
-          <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
             Most Used Languages
           </p>
           <div className="flex h-2.5 w-full overflow-hidden rounded-full">
