@@ -74,6 +74,8 @@
   }
   html {
     scroll-behavior: smooth;
+    /* stop macOS rubber-band bounce from jolting the pinned hero when scrolling back to the top */
+    overscroll-behavior-y: none;
   }
   body {
     @apply bg-background text-foreground;

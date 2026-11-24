@@ -18,6 +18,8 @@ function scrollTo(id: string) {
 
 /** Share of the pinned scroll travel used to play the video; the rest holds the last frame. */
 const VIDEO_END = 0.92
+/** Frame rate of /video/hero-scrub.mp4 (240 frames over 10s). */
+const VIDEO_FPS = 24
 
 const clamp01 = (n: number) => Math.min(1, Math.max(0, n))
 
@@ -54,6 +56,10 @@ function useScrubVideo(
     let raf = 0
     let last = performance.now()
     let current = 0
+    let requested = -1
+
+    // Snap to the centre of a real frame so we never ask for a seek that shows the same image.
+    const frameTime = (t: number) => Math.min(lastFrame(), (Math.floor(t * VIDEO_FPS) + 0.5) / VIDEO_FPS)
 
     const tick = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000)
@@ -62,7 +68,14 @@ function useScrubVideo(
         const target = clamp01(progress.get() / VIDEO_END) * lastFrame()
         current += (target - current) * (1 - Math.exp(-dt * 14))
         if (Math.abs(current - target) < 0.002) current = target
-        if (Math.abs(video.currentTime - current) > 0.001) video.currentTime = current
+        // Safari (esp. 120Hz ProMotion Macs) aborts and restarts a seek if a new one is issued
+        // before the last finished, which shows stale/skipped frames when reversing direction.
+        // Only seek once the previous one has landed; the next tick picks up the latest target.
+        const t = frameTime(current)
+        if (!video.seeking && t !== requested) {
+          requested = t
+          video.currentTime = t
+        }
       }
       raf = requestAnimationFrame(tick)
     }
